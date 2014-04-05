@@ -66,7 +66,6 @@ on property:sys.usb.config=rndis,adb
 
 
 on property:sys.usb.config=ptp
-    stop adbd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 0bb4
     write /sys/class/android_usb/android0/idProduct ${ro.usb.idproduct.ptp}

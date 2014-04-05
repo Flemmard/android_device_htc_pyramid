@@ -68,7 +68,6 @@ PRODUCT_COPY_FILES += \
     device/htc/pyramid/dsp/CodecDSPID.txt:system/etc/CodecDSPID.txt \
     device/htc/pyramid/dsp/CodecDSPID_WB.txt:system/etc/CodecDSPID_WB.txt \
     device/htc/pyramid/dsp/TPA2051_CFG.csv:system/etc/TPA2051_CFG.csv \
-    device/htc/pyramid/dsp/TPA2051_CFG_XC.csv:system/etc/TPA2051_CFG_XC.csv \
     device/htc/pyramid/dsp/soundimage/Sound_MFG.txt:system/etc/soundimage/Sound_MFG.txt \
     device/htc/pyramid/dsp/soundimage/Sound_Original_Recording.txt:system/etc/soundimage/Sound_Original_Recording.txt \
     device/htc/pyramid/dsp/soundimage/Sound_Original_SPK.txt:system/etc/soundimage/Sound_Original_SPK.txt \
@@ -115,5 +114,5 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 PRODUCT_DEVICE := pyramid
 PRODUCT_NAME := pyramid
 PRODUCT_BRAND := htc
-PRODUCT_MODEL := Sensation
+PRODUCT_MODEL := HTC Sensation
 PRODUCT_MANUFACTURER := HTC
