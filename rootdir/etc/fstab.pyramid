@@ -6,7 +6,7 @@
 /dev/block/mmcblk0p20	/boot		emmc	defaults						defaults
 /dev/block/mmcblk0p21	/recovery	emmc	defaults						defaults
 /dev/block/mmcblk0p28	/devlog		ext4	noatime,nosuid,nodev,barrier=0				wait
-/dev/block/mmcblk0p22 /system		ext4	ro,noatime,barrier=0					wait
+/dev/block/mmcblk0p22 /system		ext4	rw,noatime,barrier=0					wait
 /dev/block/mmcblk0p24	/cache		ext4	noatime,nosuid,nodev,barrier=0				wait
 /dev/block/mmcblk0p23	/data		ext4	noatime,nosuid,nodev,noauto_da_alloc,barrier=0		wait,encryptable=footer,length=-16384
 
