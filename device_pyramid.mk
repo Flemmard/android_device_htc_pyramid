@@ -115,5 +115,5 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
 PRODUCT_DEVICE := pyramid
 PRODUCT_NAME := pyramid
 PRODUCT_BRAND := htc
-PRODUCT_MODEL := Sensation
+PRODUCT_MODEL := HTC Sensation
 PRODUCT_MANUFACTURER := HTC
