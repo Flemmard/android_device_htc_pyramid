@@ -26,5 +26,4 @@
 #          media capabilities and profiles in the future
 #
 PRODUCT_PROPERTY_OVERRIDES += \
-      media.a1026.nsForVoiceRec            = 0 \
-      media.a1026.enableA1026              = 0
+      media.a1026.nsForVoiceRec            = 0
