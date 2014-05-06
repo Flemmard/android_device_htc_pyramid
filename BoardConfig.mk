@@ -37,7 +37,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=pyramid no_console_
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
 TARGET_KERNEL_CONFIG := pyramid_defconfig
 
-TARGET_RECOVERY_FSTAB := device/htc/pyramid/rootdir/etc/fstab.pyramid
+TARGET_RECOVERY_FSTAB := device/htc/pyramid/rootdir/etc/fstab.recovery
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_RECOVERY_INITRC := device/htc/pyramid/recovery/init.rc
