@@ -13,9 +13,10 @@
 # limitations under the License.
 
 ifeq ($(TARGET_DEVICE),pyramid)
+ifeq ($(TARGET_BOARD_PLATFORM),msm8660)
 
 LOCAL_PATH := $(call my-dir)
 
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
-
+endif
 endif

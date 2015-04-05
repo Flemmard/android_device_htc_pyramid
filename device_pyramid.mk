@@ -17,8 +17,128 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-# common msm8660 configs
-$(call inherit-product, device/htc/msm8660-common/msm8660.mk)
+# Qualcomm scripts
+PRODUCT_COPY_FILES += \
+    device/htc/pyramid/prebuilt/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
+
+# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml
+
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio_policy.msm8660 \
+    audio.primary.msm8660 \
+    libaudioutils \
+    libdashplayer \
+    libaudio-resampler
+
+# GPS
+PRODUCT_COPY_FILES += \
+    device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
+
+# Graphics
+PRODUCT_PACKAGES += \
+    copybit.msm8660 \
+    gralloc.msm8660 \
+    hwcomposer.msm8660 \
+    memtrack.msm8660 \
+    lights.msm8660 \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libqdutils \
+    libtilerenderer
+
+# Power
+PRODUCT_PACKAGES += \
+    power.msm8660
+
+# OMX
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libdivxdrmdecrypt \
+    libmm-omxcore \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libstagefrighthw \
+    libOmxQcelp13Enc \
+    libOmxEvrcEnc \
+    libOmxAmrEnc
+
+# HDMI
+PRODUCT_PACKAGES += \
+    hdmid
+
+# Torch
+PRODUCT_PACKAGES += \
+    Torch
+
+# USB
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs
+
+# Net
+PRODUCT_PACKAGES += \
+    libnetcmdiface \
+    crda
+
+# Audio policy configuration
+PRODUCT_COPY_FILES += \
+    device/htc/pyramid/configs/audio_policy.conf:system/etc/audio_policy.conf
+
+# Media configuration
+PRODUCT_COPY_FILES += \
+    device/htc/pyramid/configs/media_codecs.xml:system/etc/media_codecs.xml \
+    device/htc/pyramid/configs/media_profiles.xml:system/etc/media_profiles.xml
+
+
+# Thermal configuration
+PRODUCT_COPY_FILES += \
+    device/htc/pyramid/configs/thermald.conf:system/etc/thermald.conf
+
+# Device uses high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+# Common build properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    com.qc.hardware=true \
+    debug.composition.type=dyn \
+    debug.egl.hw=1 \
+    debug.mdpcomp.logs=0 \
+    debug.sf.hw=1 \
+    dev.pm.dyn_samplingrate=1 \
+    ro.opengles.version=131072 \
+    debug.egl.recordable.rgba8888=1
+
+# Camera wrapper
+PRODUCT_PACKAGES += \
+    camera.msm8660
 
 DEVICE_PACKAGE_OVERLAYS += device/htc/pyramid/overlay
 
@@ -34,23 +154,15 @@ PRODUCT_PACKAGES += \
 # Wifi
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
-## recovery and custom charging
+# Keylayouts and Key Character Maps
 PRODUCT_COPY_FILES += \
-    device/htc/pyramid/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
-    device/htc/pyramid/recovery/sbin/power_test:recovery/root/sbin/power_test \
-    device/htc/pyramid/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging \
-    device/htc/pyramid/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
-    device/htc/pyramid/recovery/sbin/htcbatt:recovery/root/sbin/htcbatt \
-    device/htc/pyramid/recovery/etc/twrp.fstab:recovery/root/etc/twrp.fstab
-
-
-# Keylayouts and Keychars
-PRODUCT_COPY_FILES += \
-    device/htc/pyramid/keychars/pyramid-keypad.kcm:system/usr/keychars/pyramid-keypad.kcm \
-    device/htc/pyramid/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
+    device/htc/pyramid/keylayout/pmic8xxx_pwrkey.kl:system/usr/keylayout/pmic8xxx_pwrkey.kl \
     device/htc/pyramid/keylayout/cy8c-touchscreen.kl:system/usr/keylayout/cy8c-touchscreen.kl \
     device/htc/pyramid/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
-    device/htc/pyramid/keylayout/pyramid-keypad.kl:system/usr/keylayout/pyramid-keypad.kl
+    device/htc/pyramid/keylayout/keypad_8660.kl:system/usr/keylayout/keypad_8660.kl \
+    device/htc/pyramid/keylayout/pmic8xxx_pwrkey.kcm:system/usr/keychars/pmic8xxx_pwrkey.kcm \
+    device/htc/pyramid/keylayout/h2w_headset.kcm:system/usr/keychars/h2w_headset.kcm \
+    device/htc/pyramid/keylayout/keypad_8660.kcm:system/usr/keychars/keypad_8660.kcm
 
 # Input device config
 PRODUCT_COPY_FILES += \
@@ -92,14 +204,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 # Bluetooth firmware
-$(call inherit-product, device/htc/msm8660-common/bcm_hcd.mk)
+$(call inherit-product, device/htc/pyramid/bcm_hcd.mk)
 
 ## misc
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.setupwizard.enable_bypass=1 \
     dalvik.vm.lockprof.threshold=500 \
-    ro.com.google.locationfeatures=1 \
-    dalvik.vm.dexopt-flags=m=y
+    ro.com.google.locationfeatures=1 
 
 # call the proprietary setup
 $(call inherit-product-if-exists, vendor/htc/pyramid/pyramid-vendor.mk)
